@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+
     <item
         android:id="@+id/home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/baseline_home_24"
         android:title="Home" />
+    <item
+        android:id="@+id/rent_your_car"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/baseline_directions_car_24"
+        android:title="Rent" />
     <item
         android:id="@+id/wallet"
         android:layout_width="wrap_content"

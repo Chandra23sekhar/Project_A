@@ -38,47 +38,21 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
-    private static final int PERMISSION_REQUEST_CODE = 100;
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+
     private static final int LOCATION_PERMISSION_CODE = 100;
-    String final_loc = "";
     EditText source_loc;
-    LocationManager locationManager;
 
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
     private FusedLocationProviderClient fusedLocationClient;
 
     public HomeFragment() {
         // Required empty public constructor
     }
 
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -115,6 +89,7 @@ public class HomeFragment extends Fragment {
         } else {
             // Permission already granted, proceed to get location
             requestSingleLocationUpdate();
+
         }
 
         return view;
@@ -168,7 +143,7 @@ public class HomeFragment extends Fragment {
 
                 String locationName = address + ", " + city + ", " + country;
                 source_loc.setText(locationName);
-                showToast("Location: " + locationName);
+//                showToast("Location: " + locationName);
             } else {
                 showToast("Location not found");
             }
@@ -184,5 +159,5 @@ public class HomeFragment extends Fragment {
 
 
     // TODO: Get location permission from the user, or manually choose a location
-
+    // get location only if the field is emtpy
 }
