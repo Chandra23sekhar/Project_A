@@ -10,8 +10,8 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="#181823"
+        android:layout_height="110dp"
+        android:background="@drawable/top_rounded_big"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -57,10 +57,11 @@
         app:layout_constraintVertical_bias="0.039" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/source_loc"
         android:layout_width="300dp"
         android:layout_height="55dp"
-        android:background="#F6F6F6"
+        android:background="@drawable/roundeed_card"
+        android:backgroundTint="#F6F6F6"
         android:drawableLeft="@drawable/baseline_location_on_24"
         android:ems="10"
         android:hint="Enter starting point"
@@ -84,14 +85,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText"
+        app:layout_constraintTop_toBottomOf="@+id/source_loc"
         app:layout_constraintVertical_bias="0.029" />
 
     <EditText
         android:id="@+id/editTextText2"
         android:layout_width="300dp"
         android:layout_height="55dp"
-        android:background="#F6F6F6"
+        android:background="@drawable/roundeed_card"
+        android:backgroundTint="#F6F6F6"
         android:drawableLeft="@drawable/baseline_location_on_24"
         android:ems="10"
         android:hint="Enter destination"
@@ -105,24 +107,25 @@
 
     <TextView
         android:id="@+id/travel_date_title"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_width="141dp"
+        android:layout_height="43dp"
         android:padding="10dp"
         android:text="Date"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText2"
-        app:layout_constraintVertical_bias="0.032" />
+        app:layout_constraintVertical_bias="0.012" />
 
     <EditText
         android:id="@+id/travel_date"
         android:layout_width="150dp"
         android:layout_height="55dp"
-        android:background="#F6F6F6"
+        android:background="@drawable/roundeed_card"
+        android:backgroundTint="#F6F6F6"
         android:drawableLeft="@drawable/baseline_date_range_24"
         android:ems="10"
         android:hint="DD/MM/YYYY"
@@ -149,4 +152,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/travel_date"
         app:layout_constraintVertical_bias="0.167" />
+
+    <EditText
+        android:id="@+id/editTextNumber"
+        android:layout_width="100dp"
+        android:layout_height="55dp"
+        android:background="@drawable/roundeed_card"
+        android:backgroundTint="#F6F6F6"
+        android:drawableLeft="@drawable/baseline_people_24"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="0"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/select_vehicle_submit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.224"
+        app:layout_constraintStart_toEndOf="@+id/travel_date"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText2"
+        app:layout_constraintVertical_bias="0.559" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="43dp"
+        android:gravity="center_vertical"
+        android:text="No. of people"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/editTextNumber"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.348"
+        app:layout_constraintStart_toEndOf="@+id/travel_date_title"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText2"
+        app:layout_constraintVertical_bias="0.757" />
 </androidx.constraintlayout.widget.ConstraintLayout>

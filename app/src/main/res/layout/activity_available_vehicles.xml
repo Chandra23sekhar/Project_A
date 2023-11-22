@@ -10,7 +10,7 @@
         android:id="@+id/choose_a_vehicle_layout"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:background="#181823"
+        android:background="@drawable/top_rounded_small"
         android:gravity="center"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"

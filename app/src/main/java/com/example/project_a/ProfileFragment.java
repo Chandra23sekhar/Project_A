@@ -68,6 +68,8 @@ public class ProfileFragment extends Fragment {
         Button edit_profile = view.findViewById(R.id.editProfile);
         EditText edit_phone = view.findViewById(R.id.edit_phone);
         TextView norm_phone = view.findViewById(R.id.norm_phone);
+        EditText edit_addr = view.findViewById(R.id.edit_address);
+        EditText edit_email = view.findViewById(R.id.edit_email_address);
         Button save_changes = view.findViewById(R.id.save_after_edit);
 
 
@@ -81,8 +83,9 @@ public class ProfileFragment extends Fragment {
                 edit_profile.setVisibility(View.GONE);
                 //display edittext and save button
                 edit_phone.setVisibility(View.VISIBLE);
+                edit_addr.setVisibility(View.VISIBLE);
+                edit_email.setVisibility(View.VISIBLE);
                 save_changes.setVisibility(View.VISIBLE);
-
             }
         });
 
@@ -95,6 +98,8 @@ public class ProfileFragment extends Fragment {
                 // close save changes and edit option
                 edit_phone.setVisibility(View.GONE);
                 save_changes.setVisibility(View.GONE);
+                edit_addr.setVisibility(View.GONE);
+                edit_email.setVisibility(View.GONE);
                 Toast.makeText(getContext(), "Your changes have been saved", Toast.LENGTH_LONG).show();
 
                 // display textview and edit option
