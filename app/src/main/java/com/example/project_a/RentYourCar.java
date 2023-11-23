@@ -24,6 +24,10 @@ public class RentYourCar extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_rent_your_car, container, false);
 
+
+        // TODO: Add dropdown list
+
+
         return view;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.project_a;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,15 +13,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * create an instance of this fragment.
- */
 public class ProfileFragment extends Fragment {
     public ProfileFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,12 +31,13 @@ public class ProfileFragment extends Fragment {
         EditText edit_email = view.findViewById(R.id.edit_email_address);
         Button save_changes = view.findViewById(R.id.save_after_edit);
 
+        //temporary button
+        Button viewDb = view.findViewById(R.id.view_db_page);
+
 
         edit_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String old_number = norm_phone.getText().toString();
 
                 norm_phone.setVisibility(View.GONE);
                 edit_profile.setVisibility(View.GONE);
@@ -57,20 +54,35 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                //TODO: Do not save change if invalid data is entered
+                // Validate the data
+                RegexValidator regexValidator = new RegexValidator();
+                boolean isMobileValid = regexValidator.validMobile(edit_phone.getText().toString());
+                boolean isEmailValid = regexValidator.validEmail(edit_email.getText().toString());
+
+
                 String new_number = "+91 " + edit_phone.getText().toString();
-                // close save changes and edit option
-                edit_phone.setVisibility(View.GONE);
-                save_changes.setVisibility(View.GONE);
-                edit_addr.setVisibility(View.GONE);
-                edit_email.setVisibility(View.GONE);
-                Toast.makeText(getContext(), "Your changes have been saved", Toast.LENGTH_LONG).show();
 
-                // display textview and edit option
-                norm_phone.setVisibility(View.VISIBLE);
-                edit_profile.setVisibility(View.VISIBLE);
+                if (isEmailValid && isMobileValid) {
 
-                //update the number
-                norm_phone.setText(new_number);
+                    // TODO: Update the database before closing the edit option
+
+                    // close save changes and edit option
+                    edit_phone.setVisibility(View.GONE);
+                    save_changes.setVisibility(View.GONE);
+                    edit_addr.setVisibility(View.GONE);
+                    edit_email.setVisibility(View.GONE);
+                    Toast.makeText(getContext(), "Your changes have been saved", Toast.LENGTH_LONG).show();
+
+                    // display textview and edit option
+                    norm_phone.setVisibility(View.VISIBLE);
+                    edit_profile.setVisibility(View.VISIBLE);
+
+                    //update the number
+                    norm_phone.setText(new_number);
+                } else {
+                    Toast.makeText(getContext(), "Invalid data entered, cannot save changes.", Toast.LENGTH_SHORT).show();
+                }
 
                 //update the database
                 // TODO: add DB code
@@ -78,6 +90,15 @@ public class ProfileFragment extends Fragment {
                 // TODO: limit to 3 changes
                 // TODO: Add option to change password
                 // TODO: Password or  number
+            }
+        });
+
+        //temp method
+        viewDb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent showDB = new Intent(getContext(), DatabaseManipulation.class);
+                startActivity(showDB);
             }
         });
 

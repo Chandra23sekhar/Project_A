@@ -43,8 +43,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 public class HomeFragment extends Fragment {
 
     private static final int LOCATION_PERMISSION_CODE = 100;
-    EditText source_loc;
-
+    EditText source_location;
+    String source;
 
     private FusedLocationProviderClient fusedLocationClient;
 
@@ -53,24 +53,51 @@ public class HomeFragment extends Fragment {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        // importing all the widgets
+        EditText date = view.findViewById(R.id.travel_date);
+        EditText dest_loc = view.findViewById(R.id.dest_loc);
+        EditText num_people = view.findViewById(R.id.num_passengers);
 
+        // Database helper code
+        DBHelper dbHelper = new DBHelper(view.getContext());
         Button select_a_vehi = view.findViewById(R.id.select_vehicle_submit);
         LocationManager locationManager = (LocationManager) getContext().getSystemService(getContext().LOCATION_SERVICE);
         // Initialize the FusedLocationProviderClient
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext());
+
+
+        // validate the data
+        // TODO: 1. validate date
+        RegexValidator regexValidator = new RegexValidator();
+
 
         // Add intent on onclick listener
         select_a_vehi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent go_to_select_vehi = new Intent(getContext(), AvailableVehicles.class);
-                startActivity(go_to_select_vehi);
+
+                boolean isValidDate = regexValidator.validDate(date.getText().toString());
+                if (isValidDate) {
+                    Toast.makeText(getContext(), "Valid data.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "" + isValidDate, Toast.LENGTH_SHORT).show();
+                }
+
+
+                // add to database
+//                long inserted = dbHelper.addRental("V001", "23/11/2023", source, "yelahanka", 3);
+//                if (inserted < 1){
+//                    Toast.makeText(getContext(), "Cannot Insert", Toast.LENGTH_SHORT).show();
+//                }else{
+//                    Toast.makeText(getContext(), "Inserted Successfully", Toast.LENGTH_SHORT).show();
+//                }
+                // startActivity(go_to_select_vehi);
             }
         });
 
@@ -132,7 +159,7 @@ public class HomeFragment extends Fragment {
 
     private void getAndDisplayLocationName(double latitude, double longitude) {
         Geocoder geocoder = new Geocoder(requireContext(), Locale.getDefault());
-        source_loc = getView().findViewById(R.id.source_loc);
+        source_location = getView().findViewById(R.id.source_loc);
         try {
             List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
 
@@ -142,7 +169,8 @@ public class HomeFragment extends Fragment {
                 String country = addresses.get(0).getCountryName();
 
                 String locationName = address + ", " + city + ", " + country;
-                source_loc.setText(locationName);
+                source_location.setText(locationName);
+                source = locationName;
 //                showToast("Location: " + locationName);
             } else {
                 showToast("Location not found");

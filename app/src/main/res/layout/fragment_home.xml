@@ -89,7 +89,7 @@
         app:layout_constraintVertical_bias="0.029" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/dest_loc"
         android:layout_width="300dp"
         android:layout_height="55dp"
         android:background="@drawable/roundeed_card"
@@ -117,7 +117,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2"
+        app:layout_constraintTop_toBottomOf="@+id/dest_loc"
         app:layout_constraintVertical_bias="0.012" />
 
     <EditText
@@ -154,7 +154,7 @@
         app:layout_constraintVertical_bias="0.167" />
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/num_passengers"
         android:layout_width="100dp"
         android:layout_height="55dp"
         android:background="@drawable/roundeed_card"
@@ -168,7 +168,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.224"
         app:layout_constraintStart_toEndOf="@+id/travel_date"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2"
+        app:layout_constraintTop_toBottomOf="@+id/dest_loc"
         app:layout_constraintVertical_bias="0.559" />
 
     <TextView
@@ -183,6 +183,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.348"
         app:layout_constraintStart_toEndOf="@+id/travel_date_title"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2"
+        app:layout_constraintTop_toBottomOf="@+id/dest_loc"
         app:layout_constraintVertical_bias="0.757" />
 </androidx.constraintlayout.widget.ConstraintLayout>
