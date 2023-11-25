@@ -84,7 +84,10 @@ public class HomeFragment extends Fragment {
 
                 boolean isValidDate = regexValidator.validDate(date.getText().toString());
                 if (isValidDate) {
-                    Toast.makeText(getContext(), "Valid data.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Valid date.", Toast.LENGTH_SHORT).show();
+
+                    //TODO: Database connection here
+                    startActivity(go_to_select_vehi);
                 } else {
                     Toast.makeText(getContext(), "" + isValidDate, Toast.LENGTH_SHORT).show();
                 }

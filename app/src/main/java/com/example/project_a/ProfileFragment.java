@@ -13,7 +13,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class ProfileFragment extends Fragment {
+
+
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -24,12 +29,21 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        // get details of logged in user
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+
+
+        Button log_out_btn = view.findViewById(R.id.log_out);
+        ;
+        FirebaseUser user = auth.getCurrentUser();
         Button edit_profile = view.findViewById(R.id.editProfile);
         EditText edit_phone = view.findViewById(R.id.edit_phone);
         TextView norm_phone = view.findViewById(R.id.norm_phone);
         EditText edit_addr = view.findViewById(R.id.edit_address);
         EditText edit_email = view.findViewById(R.id.edit_email_address);
         Button save_changes = view.findViewById(R.id.save_after_edit);
+        TextView uName = view.findViewById(R.id.userName);
+
 
         //temporary button
         Button viewDb = view.findViewById(R.id.view_db_page);
@@ -99,6 +113,23 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 Intent showDB = new Intent(getContext(), DatabaseManipulation.class);
                 startActivity(showDB);
+            }
+        });
+
+
+        if (user == null) {
+            Intent intent = new Intent(getContext(), Login.class);
+            startActivity(intent);
+        } else {
+            uName.setText(user.getEmail());
+        }
+
+        log_out_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getContext(), Login.class);
+                startActivity(intent);
             }
         });
 

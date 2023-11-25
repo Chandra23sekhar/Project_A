@@ -33,7 +33,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/userName"
         android:layout_width="220dp"
         android:layout_height="50dp"
         android:gravity="center_vertical"
@@ -173,4 +173,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
         app:layout_constraintVertical_bias="0.653" />
+
+    <Button
+        android:id="@+id/log_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#181823"
+        android:text="Logout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_db_page"
+        app:layout_constraintVertical_bias="0.298" />
 </androidx.constraintlayout.widget.ConstraintLayout>
