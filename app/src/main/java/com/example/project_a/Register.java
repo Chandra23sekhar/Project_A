@@ -44,7 +44,7 @@ public class Register extends AppCompatActivity {
         }
     }
 
-
+    // TODO: add field to verify password, before creating an account
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

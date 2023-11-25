@@ -104,6 +104,8 @@ public class ProfileFragment extends Fragment {
                 // TODO: limit to 3 changes
                 // TODO: Add option to change password
                 // TODO: Password or  number
+                // TODO: add cancel changes button
+                // TODO: add related alerts
             }
         });
 

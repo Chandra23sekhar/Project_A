@@ -67,6 +67,7 @@
             android:layout_weight="1"
             android:backgroundTint="#A6ECA9"
             android:text="₹ 100"
+            android:textSize="13sp"
             android:textColor="@color/black"
             android:onClick="getAmount"
             android:textStyle="bold" />
@@ -79,6 +80,7 @@
             android:layout_weight="1"
             android:backgroundTint="#A6ECA9"
             android:text="₹ 200"
+            android:textSize="13sp"
             android:textColor="@color/black"
             android:onClick="getAmount"
             android:textStyle="bold" />
@@ -91,6 +93,7 @@
             android:layout_weight="1"
             android:backgroundTint="#A6ECA9"
             android:text="₹ 250"
+            android:textSize="13sp"
             android:textColor="@color/black"
             android:onClick="getAmount"
             android:textStyle="bold" />
@@ -103,6 +106,7 @@
             android:layout_weight="1"
             android:backgroundTint="#A6ECA9"
             android:text="₹ 500"
+            android:textSize="13sp"
             android:textColor="@color/black"
             android:onClick="getAmount"
             android:textStyle="bold" />
@@ -145,7 +149,7 @@
         android:contentDescription="Google Pay"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintHorizontal_bias="0.964"
         app:layout_constraintStart_toEndOf="@+id/apple_pay_sel"
         app:layout_constraintTop_toBottomOf="@+id/textView14"
         app:layout_constraintVertical_bias="0.034"
