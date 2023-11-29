@@ -100,7 +100,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reg_password"
-        app:layout_constraintVertical_bias="0.182" />
+        app:layout_constraintVertical_bias="0.476" />
 
     <TextView
         android:id="@+id/text_to_login"
@@ -112,7 +112,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_register"
-        app:layout_constraintVertical_bias="0.178" />
+        app:layout_constraintVertical_bias="0.145" />
 
     <ProgressBar
         android:id="@+id/register_progress"
@@ -122,6 +122,24 @@
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/btn_register"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reg_password"
+        app:layout_constraintVertical_bias="0.817" />
+
+    <EditText
+        android:id="@+id/retype_password"
+        android:layout_width="300sp"
+        android:layout_height="50sp"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/roundeed_card"
+        android:backgroundTint="#F6F6F6"
+        android:ems="10"
+        android:hint="Re-type password"
+        android:inputType="textPassword"
+        android:padding="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/register_progress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reg_password" />
 

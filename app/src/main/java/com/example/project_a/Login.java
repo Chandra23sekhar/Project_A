@@ -2,8 +2,13 @@ package com.example.project_a;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -22,8 +27,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class Login extends AppCompatActivity {
+import android.Manifest;
 
+public class Login extends AppCompatActivity {
     EditText email, password;
     Button login;
     TextView reg_page;
@@ -31,10 +37,26 @@ public class Login extends AppCompatActivity {
     FirebaseAuth mAuth;
     ProgressBar login_progress;
 
+    //    private static final int LOCATION_PERMISSION_CODE = 200;
+//    String[] perms = {"android.permission.INTERNET"};
     // check if user is already logged in
     @Override
     public void onStart() {
         super.onStart();
+
+        // check if internet permission is granted, and internet is available
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetInfo = connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null;
+
+        if (activeNetInfo == null) {
+            // show offline page
+            Intent intent = new Intent(getApplicationContext(), DeviceOffline.class);
+            startActivity(intent);
+            finish();
+        } else {
+            Toast.makeText(this, "Internet available", Toast.LENGTH_SHORT).show();
+        }
+
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         mAuth = FirebaseAuth.getInstance();
@@ -44,12 +66,10 @@ public class Login extends AppCompatActivity {
             finish();
         }
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
 
         //status ba color
         if (Build.VERSION.SDK_INT >= 21) {
@@ -76,8 +96,6 @@ public class Login extends AppCompatActivity {
                 finish();
             }
         });
-
-
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,7 +115,6 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Please enter a valid password", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
                 //login process
                 mAuth.signInWithEmailAndPassword(email_id, pass)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -112,7 +129,6 @@ public class Login extends AppCompatActivity {
                                     finish();
                                 } else {
                                     // If sign in fails, display a message to the user.
-
                                     Toast.makeText(Login.this, "Authentication failed.",
                                             Toast.LENGTH_SHORT).show();
                                 }
@@ -121,52 +137,5 @@ public class Login extends AppCompatActivity {
 
             }
         });
-
-
-//        login.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String email_id, pass;
-//                email_id = String.valueOf(email.getText());
-//                pass = String.valueOf(password.getText());
-//
-//                //show the progress bar
-//                login_progress.setVisibility(View.VISIBLE);
-//                // validate the email id -> not available currently
-//                if (TextUtils.isEmpty(email_id)){
-//                    Toast.makeText(getApplicationContext(), "Please enter a valid email id", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//
-//                if(TextUtils.isEmpty(pass)){
-//                    Toast.makeText(getApplicationContext(), "Please enter a valid password", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//
-//                // login code
-//                mAuth.signInWithEmailAndPassword(email_id, pass)
-//                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<AuthResult> task) {
-//                                if (task.isSuccessful()) {
-//                                    login_progress.setVisibility(View.GONE);
-//                                    // Sign in success, update UI with the signed-in user's information
-//                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//                                    startActivity(intent);
-//                                    finish();
-//                                } else {
-//                                    login_progress.setVisibility(View.GONE);
-//                                    // If sign in fails, display a message to the user.
-//
-//                                    Toast.makeText(Login.this, "Authentication failed.",
-//                                            Toast.LENGTH_SHORT).show();
-//                                }
-//                            }
-//                        });
-//
-//            }
-//        });
-
-
     }
 }

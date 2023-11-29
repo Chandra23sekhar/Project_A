@@ -31,10 +31,7 @@ public class ProfileFragment extends Fragment {
 
         // get details of logged in user
         FirebaseAuth auth = FirebaseAuth.getInstance();
-
-
         Button log_out_btn = view.findViewById(R.id.log_out);
-        ;
         FirebaseUser user = auth.getCurrentUser();
         Button edit_profile = view.findViewById(R.id.editProfile);
         EditText edit_phone = view.findViewById(R.id.edit_phone);
@@ -62,7 +59,6 @@ public class ProfileFragment extends Fragment {
                 save_changes.setVisibility(View.VISIBLE);
             }
         });
-
         //onclick for save changes button
         save_changes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,10 +69,7 @@ public class ProfileFragment extends Fragment {
                 RegexValidator regexValidator = new RegexValidator();
                 boolean isMobileValid = regexValidator.validMobile(edit_phone.getText().toString());
                 boolean isEmailValid = regexValidator.validEmail(edit_email.getText().toString());
-
-
                 String new_number = "+91 " + edit_phone.getText().toString();
-
                 if (isEmailValid && isMobileValid) {
 
                     // TODO: Update the database before closing the edit option
@@ -108,7 +101,6 @@ public class ProfileFragment extends Fragment {
                 // TODO: add related alerts
             }
         });
-
         //temp method
         viewDb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,15 +109,12 @@ public class ProfileFragment extends Fragment {
                 startActivity(showDB);
             }
         });
-
-
         if (user == null) {
             Intent intent = new Intent(getContext(), Login.class);
             startActivity(intent);
         } else {
             uName.setText(user.getEmail());
         }
-
         log_out_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,7 +123,6 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
         return view;
     }
 }

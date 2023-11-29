@@ -24,7 +24,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Register extends AppCompatActivity {
 
-    EditText email, password;
+    EditText email, password, re_password;
     Button register;
     TextView login_page;
     RegexValidator regexValidator;
@@ -43,7 +43,6 @@ public class Register extends AppCompatActivity {
             finish();
         }
     }
-
     // TODO: add field to verify password, before creating an account
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,26 +55,23 @@ public class Register extends AppCompatActivity {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(this.getResources().getColor(R.color.darkpurple));
         }
-
-
         mAuth = FirebaseAuth.getInstance();
         email = findViewById(R.id.reg_email);
         password = findViewById(R.id.reg_password);
         register = findViewById(R.id.btn_register);
         login_page = findViewById(R.id.text_to_login);
+        re_password = findViewById(R.id.retype_password);
         regexValidator = new RegexValidator();
         register_progress = findViewById(R.id.register_progress);
-
-
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email_id, pass;
+                String email_id, pass, re_pass;
                 email_id = String.valueOf(email.getText());
                 pass = String.valueOf(password.getText());
+                re_pass = String.valueOf(re_password.getText());
 
-                //show the progress bar
-                register_progress.setVisibility(View.VISIBLE);
+
                 // validate the email id
                 if (TextUtils.isEmpty(email_id)) {
                     Toast.makeText(getApplicationContext(), "Please enter a valid email id", Toast.LENGTH_SHORT).show();
@@ -87,6 +83,15 @@ public class Register extends AppCompatActivity {
                     return;
                 }
 
+                if (pass.equals(re_pass) == false) {
+                    Toast.makeText(Register.this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                //show the progress bar
+                register_progress.setVisibility(View.VISIBLE);
+
+
                 // register process
                 mAuth.createUserWithEmailAndPassword(email_id, pass)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -95,7 +100,7 @@ public class Register extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     register_progress.setVisibility(View.GONE);
                                     // Sign in success, update UI with the signed-in user's information
-                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                    Intent intent = new Intent(getApplicationContext(), MoreDetailsFromUser.class);
                                     startActivity(intent);
                                     finish();
                                 } else {
@@ -108,8 +113,6 @@ public class Register extends AppCompatActivity {
                         });
             }
         });
-
-
         // open login page from register
         login_page.setOnClickListener(new View.OnClickListener() {
             @Override

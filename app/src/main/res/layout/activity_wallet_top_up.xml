@@ -50,8 +50,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.406"
@@ -61,12 +59,12 @@
 
         <Button
             android:id="@+id/amount_100"
-            android:layout_width="90dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
             android:layout_weight="1"
             android:backgroundTint="#A6ECA9"
-            android:text="₹ 100"
+            android:text="₹100"
             android:textSize="13sp"
             android:textColor="@color/black"
             android:onClick="getAmount"
@@ -74,12 +72,12 @@
 
         <Button
             android:id="@+id/amount_200"
-            android:layout_width="90dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
             android:layout_weight="1"
             android:backgroundTint="#A6ECA9"
-            android:text="₹ 200"
+            android:text="₹200"
             android:textSize="13sp"
             android:textColor="@color/black"
             android:onClick="getAmount"
@@ -87,12 +85,12 @@
 
         <Button
             android:id="@+id/amount_250"
-            android:layout_width="90dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
             android:layout_weight="1"
             android:backgroundTint="#A6ECA9"
-            android:text="₹ 250"
+            android:text="₹250"
             android:textSize="13sp"
             android:textColor="@color/black"
             android:onClick="getAmount"
@@ -100,12 +98,12 @@
 
         <Button
             android:id="@+id/amount_500"
-            android:layout_width="90dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
             android:layout_weight="1"
             android:backgroundTint="#A6ECA9"
-            android:text="₹ 500"
+            android:text="₹500"
             android:textSize="13sp"
             android:textColor="@color/black"
             android:onClick="getAmount"
