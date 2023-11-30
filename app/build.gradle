@@ -1,7 +1,15 @@
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
 }
+apply plugin: 'com.android.application'
 
 android {
     namespace 'com.example.project_a'
@@ -28,6 +36,7 @@ android {
         viewBinding true
     }
 
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -48,4 +57,10 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation 'com.google.firebase:firebase-analytics:17.2.1'
+    implementation 'com.google.firebase:firebase-database:19.2.0'
+
 }
+
+// Add the following line at the bottom
+apply plugin: 'com.google.gms.google-services'

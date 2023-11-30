@@ -34,6 +34,8 @@ import android.location.Geocoder;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 /**
@@ -47,6 +49,8 @@ public class HomeFragment extends Fragment {
     String source;
 
     private FusedLocationProviderClient fusedLocationClient;
+    FirebaseDatabase db;
+    DatabaseReference reference; // TODO: seperate DB code from view code
 
     public HomeFragment() {
         // Required empty public constructor
@@ -70,6 +74,8 @@ public class HomeFragment extends Fragment {
         // Initialize the FusedLocationProviderClient
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext());
 
+        // TODO: fetch data from the database
+
 
         // validate the data
         // TODO: 1. validate date
@@ -87,6 +93,7 @@ public class HomeFragment extends Fragment {
                     Toast.makeText(getContext(), "Valid date.", Toast.LENGTH_SHORT).show();
 
                     //TODO: Database connection here
+                    //TODO: Get username, default address from the database
                     startActivity(go_to_select_vehi);
                 } else {
                     Toast.makeText(getContext(), "" + isValidDate, Toast.LENGTH_SHORT).show();

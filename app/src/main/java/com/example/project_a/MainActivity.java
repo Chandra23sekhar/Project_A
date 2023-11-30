@@ -11,11 +11,11 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.project_a.databinding.ActivityMainBinding;
-
 public class MainActivity extends AppCompatActivity {
 
     // Binding the fragments
     ActivityMainBinding binding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

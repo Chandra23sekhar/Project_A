@@ -61,7 +61,7 @@
         app:layout_constraintHorizontal_bias="0.477"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17"
-        app:layout_constraintVertical_bias="0.158" />
+        app:layout_constraintVertical_bias="0.272" />
 
     <EditText
         android:id="@+id/get_user_addr"
@@ -107,19 +107,50 @@
         app:layout_constraintVertical_bias="0.07" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/get_full_name"
         android:layout_width="300sp"
         android:layout_height="50sp"
+        android:layout_marginBottom="9dp"
         android:background="@drawable/roundeed_card"
         android:backgroundTint="#F6F6F6"
         android:ems="10"
         android:hint="Full name"
         android:inputType="text"
         android:padding="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/get_user_phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.477"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17"
-        app:layout_constraintVertical_bias="0.046" />
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/get_user_email"
+        android:layout_width="300sp"
+        android:layout_height="50sp"
+        android:background="@drawable/roundeed_card"
+        android:backgroundTint="#F6F6F6"
+        android:ems="10"
+        android:hint="Email address"
+        android:inputType="textEmailAddress"
+        android:padding="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/get_full_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.477"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView17"
+        app:layout_constraintVertical_bias="0.648" />
+
+    <ProgressBar
+        android:id="@+id/db_prog_bar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/get_started"
+        app:layout_constraintHorizontal_bias="0.872"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/set_as_default_addr"
+        app:layout_constraintVertical_bias="0.07" />
 </androidx.constraintlayout.widget.ConstraintLayout>
