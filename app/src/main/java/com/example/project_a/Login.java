@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
+import android.net.Network;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
@@ -46,7 +47,8 @@ public class Login extends AppCompatActivity {
 
         // check if internet permission is granted, and internet is available
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetInfo = connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null;
+        Network activeNetInfo = connectivityManager.getActiveNetwork();
+
 
         if (activeNetInfo == null) {
             // show offline page
@@ -54,17 +56,18 @@ public class Login extends AppCompatActivity {
             startActivity(intent);
             finish();
         } else {
-            Toast.makeText(this, "Internet available", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(this, "Internet available", Toast.LENGTH_SHORT).show();
+            FirebaseUser currentUser = mAuth.getCurrentUser();
+            mAuth = FirebaseAuth.getInstance();
+            if (currentUser != null) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
         }
 
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        mAuth = FirebaseAuth.getInstance();
-        if (currentUser != null) {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
+
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,7 +137,6 @@ public class Login extends AppCompatActivity {
                                 }
                             }
                         });
-
             }
         });
     }

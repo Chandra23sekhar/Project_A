@@ -3,4 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="darkpurple">#181823</color>
+    <color name="button_green">#508D69</color>
+    <color name="button_released">#A6ECA9</color>
 </resources>
