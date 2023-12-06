@@ -161,6 +161,7 @@ public class HomeFragment extends Fragment {
                     } else {
 //                        getAndDisplayLocationName(location.getLatitude(), location.getLongitude());
                         showToast("Last known location not available");
+                        // get default location from the firebase db
                     }
                 }
             });

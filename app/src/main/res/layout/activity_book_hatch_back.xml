@@ -6,4 +6,70 @@
     android:layout_height="match_parent"
     tools:context=".BookHatchBack">
 
+    <LinearLayout
+        android:id="@+id/linearLayout9"
+        android:layout_width="match_parent"
+        android:layout_height="65sp"
+        android:background="@drawable/top_rounded_small"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="342dp"
+        android:layout_height="557dp"
+        android:background="@drawable/roundeed_card"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout9"
+        app:layout_constraintVertical_bias="0.201">
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="300sp"
+            android:layout_height="200sp"
+            app:srcCompat="@drawable/basiccar" />
+
+        <TextView
+            android:id="@+id/car_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20sp"
+            android:text="POLO GT"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/car_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20sp"
+            android:text="₹ 380 / day" />
+
+        <Button
+            android:id="@+id/pay_now"
+            android:layout_width="wrap_content"
+            android:layout_height="55sp"
+            android:layout_margin="10sp"
+            android:backgroundTint="@color/darkpurple"
+            android:drawableRight="@drawable/baseline_double_arrow_24"
+            android:text="Pay ₹ 380 from wallet" />
+
+        <ProgressBar
+            android:id="@+id/pay_prog"
+            android:layout_width="300sp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/button_green"
+            android:progressBackgroundTintMode="add"
+            android:progressTint="@color/button_green"
+            android:visibility="gone" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

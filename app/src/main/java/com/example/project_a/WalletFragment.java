@@ -47,7 +47,7 @@ public class WalletFragment extends Fragment {
 
 
         db = FirebaseDatabase.getInstance("https://projecta-8defc-default-rtdb.firebaseio.com/");
-        reference = db.getReference("User_Balance");
+        reference = db.getReference("User_balance");
         curr_bal = view.findViewById(R.id.user_current_balance);
 
         currentUser = FirebaseAuth.getInstance().getCurrentUser();

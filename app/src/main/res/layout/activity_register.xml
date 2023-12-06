@@ -130,19 +130,18 @@
         android:id="@+id/retype_password"
         android:layout_width="300sp"
         android:layout_height="50sp"
-        android:layout_marginBottom="60dp"
         android:background="@drawable/roundeed_card"
         android:backgroundTint="#F6F6F6"
         android:ems="10"
         android:hint="Re-type password"
         android:inputType="textPassword"
         android:padding="10sp"
-        app:layout_constraintBottom_toTopOf="@+id/register_progress"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
-        app:layout_constraintVertical_bias="0.984" />
+        app:layout_constraintVertical_bias="0.45" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

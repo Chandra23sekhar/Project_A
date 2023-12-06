@@ -3,6 +3,7 @@ package com.example.project_a;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -13,8 +14,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ProfileFragment extends Fragment {
 
@@ -28,9 +36,32 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        TextView uName = view.findViewById(R.id.userName);
 
         // get details of logged in user
         FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseDatabase db = FirebaseDatabase.getInstance("https://projecta-8defc-default-rtdb.firebaseio.com/");
+        DatabaseReference reference = db.getReference("Users");
+        DatabaseReference user_to_find = reference.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+        user_to_find.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Users ret_user = dataSnapshot.getValue(Users.class);
+
+                if (ret_user != null) {
+
+                    Toast.makeText(getContext(), ret_user.getFull_name() + user_to_find, Toast.LENGTH_SHORT).show();
+                    uName.setText(ret_user.getFull_name());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         Button log_out_btn = view.findViewById(R.id.log_out);
         FirebaseUser user = auth.getCurrentUser();
         Button edit_profile = view.findViewById(R.id.editProfile);
@@ -39,7 +70,7 @@ public class ProfileFragment extends Fragment {
         EditText edit_addr = view.findViewById(R.id.edit_address);
         EditText edit_email = view.findViewById(R.id.edit_email_address);
         Button save_changes = view.findViewById(R.id.save_after_edit);
-        TextView uName = view.findViewById(R.id.userName);
+
 
 
         //temporary button
@@ -73,6 +104,23 @@ public class ProfileFragment extends Fragment {
                 if (isEmailValid && isMobileValid) {
 
                     // TODO: Update the database before closing the edit option
+                    FirebaseDatabase db = FirebaseDatabase.getInstance("https://projecta-8defc-default-rtdb.firebaseio.com/");
+
+
+                    Users updated_user = new Users();
+                    DatabaseReference reference = db.getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                    updated_user.setEmail(edit_email.getText().toString());
+                    updated_user.setMobile_no(edit_phone.getText().toString());
+                    updated_user.setAddress(edit_addr.getText().toString());
+                    updated_user.setDefault_address(edit_addr.getText().toString());
+
+                    reference.setValue(updated_user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(getContext(), "Data updated successfully!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
 
                     // close save changes and edit option
                     edit_phone.setVisibility(View.GONE);
@@ -101,20 +149,7 @@ public class ProfileFragment extends Fragment {
                 // TODO: add related alerts
             }
         });
-        //temp method
-        viewDb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent showDB = new Intent(getContext(), DatabaseManipulation.class);
-                startActivity(showDB);
-            }
-        });
-        if (user == null) {
-            Intent intent = new Intent(getContext(), Login.class);
-            startActivity(intent);
-        } else {
-            uName.setText(user.getEmail());
-        }
+
         log_out_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

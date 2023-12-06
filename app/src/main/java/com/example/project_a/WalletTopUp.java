@@ -91,8 +91,9 @@ public class WalletTopUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO: update the balance
+
                 db = FirebaseDatabase.getInstance("https://projecta-8defc-default-rtdb.firebaseio.com/");
-                reference = db.getReference("User_Balance");
+                reference = db.getReference("User_balance");
                 FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
 
                 // getting old balance

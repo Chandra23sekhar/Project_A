@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -82,7 +83,7 @@ public class MoreDetailsFromUser extends AppCompatActivity {
                 Users user = new Users(s_mail_id, s_full_name, s_mobile_no, s_address, default_addr);
                 db = FirebaseDatabase.getInstance("https://projecta-8defc-default-rtdb.firebaseio.com/");
                 reference = db.getReference("Users");
-                reference.child(s_full_name).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                reference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
 
@@ -95,6 +96,25 @@ public class MoreDetailsFromUser extends AppCompatActivity {
 
 
                         Toast.makeText(MoreDetailsFromUser.this, "Successfully created new user", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+                reference = db.getReference("User_balance");
+                UserWalletDB userWalletDB = new UserWalletDB(0);
+                reference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(userWalletDB).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                        mail_id.setText("");
+                        full_name.setText("");
+                        mobile_no.setText("");
+                        address.setText("");
+                        default_addr = "";
+                        set_def_addr.setChecked(false);
+
+
+                        Toast.makeText(MoreDetailsFromUser.this, "Successfully created wallet for user", Toast.LENGTH_SHORT).show();
 
                     }
                 });
